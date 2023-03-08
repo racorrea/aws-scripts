@@ -8,13 +8,13 @@ import boto3
 
 print ('Init script ...')
 print ('Processing, wait a moment ....')
-session = boto3.Session(profile_name='kushki-uat')
+session = boto3.Session(profile_name='uat')
 client = session.client('ssm', region_name='us-east-1')
 
 paginator = client.get_paginator('get_parameters_by_path')
 
 response_iterator = paginator.paginate(
-    Path='/qa/usrv-authorizer/'
+    Path='/qa/usrv-card/'
 )
 
 parameters=[]
@@ -25,6 +25,8 @@ for page in response_iterator:
 
 print ('Login architecture profile ...')
 print ('Processing, wait a moment ....')
+
+
 session_architecture = boto3.Session(profile_name='architecture')
 client_architecture = session_architecture.client('ssm', region_name='us-east-1')
 
